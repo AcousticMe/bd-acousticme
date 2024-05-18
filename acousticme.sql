@@ -84,6 +84,10 @@ UPDATE musica
 SET linkImagem = "https://i.scdn.co/image/ab67616d0000b2734dcab2c1f3a6ec24f0a2d439"
 WHERE id = 2;
 
+ALTER TABLE musica
+ADD COLUMN fkRitmo INT, 
+ADD CONSTRAINT FOREIGN KEY (fkRitmo) REFERENCES ritmo(id);
+
 -- RITMO
 
 INSERT INTO ritmo(nome, ritmo)
@@ -95,10 +99,8 @@ VALUES
 
 SELECT * FROM ritmo;
 
-ALTER TABLE musica
-ADD COLUMN fkRitmo INT, 
-ADD CONSTRAINT FOREIGN KEY (fkRitmo) REFERENCES ritmo(id);
+SELECT * FROM musica
+LEFT JOIN ritmo
+ON musica.fkRitmo = ritmo.id;
 
-SELECT * FROM musica;
-
-
+	
